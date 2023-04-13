@@ -1,1 +1,8 @@
-### 这是一个将sfc文件打包成umd格式的demo
+### 阅读
+```
+    globals: {
+      'vue': 'Vue',
+      'lodash-es': '_'
+    },
+    exports: 'named'
+```

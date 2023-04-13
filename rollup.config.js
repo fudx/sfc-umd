@@ -1,19 +1,23 @@
-import vue from 'rollup-plugin-vue'
-import babel from '@rollup/plugin-babel'
-import { terser } from 'rollup-plugin-terser'
+import vue from 'rollup-plugin-vue';
+import babel from 'rollup-plugin-babel';
 
 export default {
-  input: 'src/main.js',
+  input: './index.vue',
   output: {
-    file: 'dist/my-component.js',
+    name: 'index',
+    file: 'dist/file.js',
     format: 'umd',
-    name: 'MyComponent'
+    globals: {
+        'vue': 'Vue',
+    },
   },
   plugins: [
-    vue(),
-    babel({
-      babelHelpers: 'bundled'
+    vue({
+      css: true, // 将组件中的 CSS 提取到单独的文件中
+      compileTemplate: true, // 将模板编译为 render 函数
     }),
-    terser()
-  ]
-}
+    babel({
+      exclude: 'node_modules/**', // 排除 node_modules 中的代码
+    }),
+  ],
+};
